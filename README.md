@@ -148,3 +148,17 @@ You can use the following default accounts to explore the CineLuv workspaces:
 
 ## 📜 License
 This project is open-source and available under the **MIT License**. Crafted for elite, modern cinema booking experiences.
+
+#Demo Video
+
+
+
+
+
+
+https://github.com/user-attachments/assets/b1b81bea-8fdd-46dc-97ff-b80aa51e89c0
+
+
+
+
+

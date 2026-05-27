@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineLuv - Premium Movie Booking Experience</title>
+    <!-- Google Fonts: Outfit and Inter for sleek premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Sleek Neon Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#" class="logo" id="nav-logo">
+                <span class="gold-text"><i class="fa-solid fa-film"></i> CINE</span><span class="purple-text">LUV</span>
+            </a>
+            
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#" class="nav-link active" data-target="view-movies"><i class="fa-solid fa-house"></i> Movies</a>
+                <a href="#" class="nav-link" id="nav-history" data-target="view-history" style="display: none;"><i class="fa-solid fa-ticket"></i> My Tickets</a>
+                <a href="#" class="nav-link" id="nav-admin" data-target="view-admin" style="display: none;"><i class="fa-solid fa-sliders"></i> Admin Portal</a>
+            </nav>
+            
+            <div class="user-auth-section" id="auth-header-section">
+                <!-- Swapped dynamically via JS -->
+                <button class="btn btn-primary" id="btn-header-login"><i class="fa-solid fa-user"></i> Login / Register</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Area -->
+    <main class="main-container">
+        
+        <!-- View 1: Movie Browsing (Landing) -->
+        <section id="view-movies" class="app-view active">
+            <!-- Glassmorphism Hero Spotlight -->
+            <div class="hero-spotlight" style="background-image: linear-gradient(180deg, rgba(13, 12, 29, 0.4) 0%, #0d0c1d 100%), url('https://upload.wikimedia.org/wikipedia/en/d/d7/Hi_Nanna_poster.jpg'); background-size: cover; background-position: center 20%;">
+                <div class="hero-content">
+                    <div class="tag"><i class="fa-solid fa-fire"></i> Spotlight Movie</div>
+                    <h1>Hi Nanna</h1>
+                    <p class="description">A heart-wrenching emotional family drama following Viraj, a single-father photographer, and his young daughter Mahi, whose lives change forever when they meet a mysterious woman.</p>
+                    <div class="hero-meta">
+                        <span><i class="fa-solid fa-clock"></i> 155 Mins</span>
+                        <span><i class="fa-solid fa-mask"></i> Family / Drama / Romance</span>
+                        <span><i class="fa-solid fa-volume-high"></i> Dolby Atmos</span>
+                    </div>
+                    <button class="btn btn-gold btn-large" id="hero-book-btn"><i class="fa-solid fa-ticket-simple"></i> Book Showtimes</button>
+                </div>
+            </div>
+
+            <!-- Movie Filter & Search Bar -->
+            <div class="filter-bar">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="movie-search" placeholder="Search for movies, genres...">
+                </div>
+                <div class="filters">
+                    <select id="genre-filter">
+                        <option value="">All Genres</option>
+                        <option value="romance">Romance</option>
+                        <option value="drama">Drama</option>
+                        <option value="family">Family</option>
+                        <option value="comedy">Comedy</option>
+                    </select>
+                    <select id="lang-filter">
+                        <option value="">All Languages</option>
+                        <option value="telugu">Telugu</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Movies Grid -->
+            <div class="section-title">
+                <h2>Browse movies</h2>
+                <div class="accent-line"></div>
+            </div>
+            <div class="movies-grid" id="movies-container">
+                <!-- Filled dynamically via app.js -->
+            </div>
+        </section>
+
+        <!-- View 2: Showtime Selection -->
+        <section id="view-showtimes" class="app-view">
+            <button class="btn-back" id="back-to-movies"><i class="fa-solid fa-arrow-left"></i> Back to Movies</button>
+            
+            <div class="movie-details-banner" id="showtime-movie-banner">
+                <!-- Filled dynamically via app.js -->
+            </div>
+
+            <div class="showtime-selection-container">
+                <div class="section-title">
+                    <h3>Available Showtimes</h3>
+                    <p>Select your preferred date and screen session</p>
+                    <div class="accent-line"></div>
+                </div>
+
+                <div class="showtimes-timeline" id="showtimes-container">
+                    <!-- Filled dynamically via app.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- View 3: Interactive Seat Selection -->
+        <section id="view-seats" class="app-view">
+            <button class="btn-back" id="back-to-showtimes"><i class="fa-solid fa-arrow-left"></i> Back to Showtimes</button>
+            
+            <div class="booking-session-info" id="booking-session-summary">
+                <!-- Showtime brief summary filled dynamically -->
+            </div>
+
+            <div class="theater-hall-layout">
+                <!-- Curved Cinema Screen Component -->
+                <div class="screen-container">
+                    <div class="screen"></div>
+                    <div class="screen-glow"></div>
+                    <p class="screen-label">SCREEN</p>
+                </div>
+
+                <!-- Seat Grid -->
+                <div class="seats-grid-container" id="seats-interactive-grid">
+                    <!-- Filled dynamically (Rows A-F, Columns 1-10) -->
+                </div>
+
+                <!-- Seat Map Legend -->
+                <div class="seat-legend">
+                    <div class="legend-item">
+                        <div class="seat-demo available"></div>
+                        <span>Available</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="seat-demo selected"></div>
+                        <span>Your Selection</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="seat-demo occupied"></div>
+                        <span>Booked</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seat Selection Summary Checkout Floating Bar -->
+            <div class="checkout-floating-bar">
+                <div class="selected-summary">
+                    <p class="label">Selected Seats</p>
+                    <p class="value" id="checkout-seats-list">None</p>
+                </div>
+                <div class="total-price-box">
+                    <p class="label">Total Amount</p>
+                    <p class="value" id="checkout-total-price">₹0</p>
+                </div>
+                <button class="btn btn-gold btn-large" id="btn-confirm-booking" disabled>
+                    <i class="fa-solid fa-check"></i> Book Now
+                </button>
+            </div>
+        </section>
+
+        <!-- View 4: Booking Success & Ticket Stub -->
+        <section id="view-success" class="app-view">
+            <div class="success-ticket-container">
+                <div class="success-header">
+                    <div class="success-icon"><i class="fa-solid fa-circle-check"></i></div>
+                    <h2>Booking Confirmed!</h2>
+                    <p>Your ticket reference has been sent to your email.</p>
+                </div>
+
+                <!-- Premium Ticket Design -->
+                <div class="ticket-card" id="success-ticket-details">
+                    <!-- Loaded dynamically via app.js -->
+                </div>
+
+                <div class="success-actions">
+                    <button class="btn btn-primary" id="btn-success-history"><i class="fa-solid fa-ticket"></i> View My Tickets</button>
+                    <button class="btn btn-outline" id="btn-success-home"><i class="fa-solid fa-house"></i> Home Page</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- View 5: Authentication Tab (Login / Register) -->
+        <section id="view-auth" class="app-view">
+            <div class="auth-box-container">
+                <div class="auth-tabs">
+                    <button class="auth-tab-btn active" id="tab-login-btn">Sign In</button>
+                    <button class="auth-tab-btn" id="tab-register-btn">Create Account</button>
+                </div>
+
+                <div class="auth-card">
+                    <!-- Login Form -->
+                    <form id="form-login" class="auth-form active">
+                        <h3>Welcome back</h3>
+                        <p class="subtitle">Please log in to your premium account</p>
+                        
+                        <div class="input-group">
+                            <label for="login-email">Email Address</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" id="login-email" required placeholder="name@cinema.com">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="login-password">Password</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="login-password" required placeholder="••••••••">
+                            </div>
+                        </div>
+
+                        <div class="auth-error-msg" id="login-error"></div>
+
+                        <button type="submit" class="btn btn-primary btn-full-width"><i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In</button>
+                    </form>
+
+                    <!-- Registration Form -->
+                    <form id="form-register" class="auth-form">
+                        <h3>Create Premium Account</h3>
+                        <p class="subtitle">Gain access to advanced seat booking configurations</p>
+                        
+                        <div class="input-group">
+                            <label for="register-name">Full Name</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-user"></i>
+                                <input type="text" id="register-name" required placeholder="John Doe">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="register-email">Email Address</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-envelope"></i>
+                                <input type="email" id="register-email" required placeholder="name@cinema.com">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="register-password">Password</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-lock"></i>
+                                <input type="password" id="register-password" required placeholder="••••••••">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="register-role">Account Type</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <select id="register-role">
+                                    <option value="CUSTOMER">Standard Customer</option>
+                                    <option value="ADMIN">System Administrator</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="auth-error-msg" id="register-error"></div>
+                        <div class="auth-success-msg" id="register-success"></div>
+
+                        <button type="submit" class="btn btn-gold btn-full-width"><i class="fa-solid fa-user-plus"></i> Register</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- View 6: Customer Tickets Dashboard -->
+        <section id="view-history" class="app-view">
+            <div class="section-title">
+                <h2>My Booked Tickets</h2>
+                <p>Manage your upcoming and historical cinema sessions</p>
+                <div class="accent-line"></div>
+            </div>
+
+            <div class="tickets-history-container" id="tickets-history-list">
+                <!-- Filled dynamically via app.js -->
+            </div>
+        </section>
+
+        <!-- View 7: Admin Portal -->
+        <section id="view-admin" class="app-view">
+            <div class="admin-portal-header">
+                <h2>Admin Management Portal</h2>
+                <div class="accent-line"></div>
+            </div>
+
+            <!-- Admin Stats Cards -->
+            <div class="admin-stats-grid">
+                <div class="stat-card">
+                    <div class="icon-box purple"><i class="fa-solid fa-clapperboard"></i></div>
+                    <div class="stat-info">
+                        <p class="stat-label">Total Movies</p>
+                        <p class="stat-value" id="stat-movies-count">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon-box gold"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="stat-info">
+                        <p class="stat-label">Active Showtimes</p>
+                        <p class="stat-value" id="stat-shows-count">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="icon-box green"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                    <div class="stat-info">
+                        <p class="stat-label">System Revenue</p>
+                        <p class="stat-value" id="stat-revenue">₹0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-content-tabs">
+                <button class="admin-tab-btn active" data-panel="panel-add-movie"><i class="fa-solid fa-square-plus"></i> Add Movie</button>
+                <button class="admin-tab-btn" data-panel="panel-add-showtime"><i class="fa-solid fa-clock"></i> Add Showtime</button>
+                <button class="admin-tab-btn" data-panel="panel-view-bookings"><i class="fa-solid fa-list-check"></i> View Bookings</button>
+            </div>
+
+            <div class="admin-panels">
+                <!-- Panel A: Add Movie -->
+                <div class="admin-panel active" id="panel-add-movie">
+                    <form id="form-admin-movie" class="admin-panel-form">
+                        <h3>Add New Film</h3>
+                        <p>Fill out the forms to list a movie on the portal homepage</p>
+                        
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="admin-movie-title">Movie Title</label>
+                                <input type="text" id="admin-movie-title" required placeholder="Inception">
+                            </div>
+                            <div class="input-group">
+                                <label for="admin-movie-genre">Genre</label>
+                                <input type="text" id="admin-movie-genre" required placeholder="Sci-Fi / Action">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="admin-movie-lang">Language</label>
+                                <input type="text" id="admin-movie-lang" required placeholder="English">
+                            </div>
+                            <div class="input-group">
+                                <label for="admin-movie-duration">Duration (Minutes)</label>
+                                <input type="number" id="admin-movie-duration" required placeholder="148">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="admin-movie-poster">Poster URL</label>
+                                <input type="url" id="admin-movie-poster" placeholder="https://images.unsplash.com/...">
+                            </div>
+                            <div class="input-group">
+                                <label for="admin-movie-date">Release Date</label>
+                                <input type="date" id="admin-movie-date">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="admin-movie-desc">Film Synopsis</label>
+                            <textarea id="admin-movie-desc" rows="4" placeholder="Brief summary of the movie..."></textarea>
+                        </div>
+
+                        <div class="admin-form-msg" id="admin-movie-msg"></div>
+
+                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> Save Movie</button>
+                    </form>
+                </div>
+
+                <!-- Panel B: Add Showtime -->
+                <div class="admin-panel" id="panel-add-showtime">
+                    <form id="form-admin-showtime" class="admin-panel-form">
+                        <h3>Add New Showtime Session</h3>
+                        <p>Assign a listed film to a cinema hall at a specific hour</p>
+                        
+                        <div class="input-group">
+                            <label for="admin-showtime-movie">Select Movie</label>
+                            <select id="admin-showtime-movie" required>
+                                <!-- Filled dynamically via app.js -->
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="admin-showtime-screen">Screen Name</label>
+                                <input type="text" id="admin-showtime-screen" required placeholder="IMAX Hall / Screen 1">
+                            </div>
+                            <div class="input-group">
+                                <label for="admin-showtime-price">Ticket Price (₹)</label>
+                                <input type="number" id="admin-showtime-price" step="1" required placeholder="250">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="admin-showtime-date">Show Date</label>
+                                <input type="date" id="admin-showtime-date" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="admin-showtime-time">Show Time</label>
+                                <input type="time" id="admin-showtime-time" required>
+                            </div>
+                        </div>
+
+                        <div class="admin-form-msg" id="admin-showtime-msg"></div>
+
+                        <button type="submit" class="btn btn-gold"><i class="fa-solid fa-clock"></i> Publish Showtime</button>
+                    </form>
+                </div>
+
+                <!-- Panel C: View Bookings -->
+                <div class="admin-panel" id="panel-view-bookings">
+                    <h3>Overall Booking Transactions</h3>
+                    <p>Live transaction feed for theater management audit logs</p>
+                    
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Booking Ref</th>
+                                    <th>Movie</th>
+                                    <th>User</th>
+                                    <th>Seats</th>
+                                    <th>Date/Session</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-bookings-table-body">
+                                <!-- Filled dynamically via app.js -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Sleek Neon Footer -->
+    <footer class="main-footer">
+        <p>&copy; 2026 CineLuv Premium Cinemas. All rights reserved. Designed for elite cinema experiences.</p>
+    </footer>
+
+    <!-- Custom Script File -->
+    <script src="app.js"></script>
+</body>
+</html>

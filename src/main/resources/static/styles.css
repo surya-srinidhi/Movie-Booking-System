@@ -1,0 +1,1531 @@
+/* ==========================================================================
+   CINELUV PREMIUM THEATER - CORE STYLESHEET
+   ========================================================================== */
+
+/* Design Tokens & Theme Variables */
+:root {
+    --bg-primary: #090a0f;
+    --bg-secondary: #121420;
+    --bg-card: rgba(30, 32, 50, 0.6);
+    --bg-card-hover: rgba(40, 44, 70, 0.85);
+    
+    --primary-purple: #8b5cf6;
+    --primary-purple-glow: rgba(139, 92, 246, 0.45);
+    --primary-gold: #f59e0b;
+    --primary-gold-glow: rgba(245, 158, 11, 0.4);
+    
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    --text-gold: #fbc02d;
+    --text-purple: #a78bfa;
+    
+    --accent-green: #10b981;
+    --accent-red: #ef4444;
+    
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --border-glass-active: rgba(139, 92, 246, 0.3);
+    
+    --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+/* Reset & Scrollbar Configuration */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--bg-secondary);
+    border-radius: 4px;
+    border: 2px solid var(--bg-primary);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-purple);
+}
+
+/* Typography Base */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+/* Page View Controller (Single Page App) */
+.app-view {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: var(--transition-smooth);
+}
+
+.app-view.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Sleek Neon Header Styling */
+.main-header {
+    background-color: rgba(9, 10, 15, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-glass);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    text-decoration: none;
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo i {
+    font-size: 20px;
+}
+
+.gold-text {
+    color: var(--primary-gold);
+    text-shadow: 0 0 10px var(--primary-gold-glow);
+}
+
+.purple-text {
+    color: var(--primary-purple);
+    text-shadow: 0 0 10px var(--primary-purple-glow);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-link.active {
+    border: 1px solid var(--border-glass-active);
+    color: var(--text-purple);
+}
+
+/* Premium Button Styling */
+.btn {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 15px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-purple), #6366f1);
+    color: var(--text-main);
+    box-shadow: 0 4px 15px var(--primary-purple-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+}
+
+.btn-gold {
+    background: linear-gradient(135deg, var(--primary-gold), #f59e0b);
+    color: #0c0d12;
+    box-shadow: 0 4px 15px var(--primary-gold-glow);
+}
+
+.btn-gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
+}
+
+.btn-gold:disabled, .btn-primary:disabled {
+    background: #272836;
+    color: #6b7280;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-glass);
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-large {
+    padding: 14px 28px;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.btn-full-width {
+    width: 100%;
+}
+
+.btn-back {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+    font-weight: 500;
+    cursor: pointer;
+    font-size: 15px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    transition: var(--transition-smooth);
+}
+
+.btn-back:hover {
+    color: var(--primary-purple);
+    transform: translateX(-4px);
+}
+
+/* Layout Framework */
+.main-container {
+    max-width: 1200px;
+    margin: 80px auto 40px auto;
+    padding: 24px;
+    min-height: calc(100vh - 200px);
+}
+
+.main-footer {
+    border-top: 1px solid var(--border-glass);
+    padding: 24px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    background-color: var(--bg-primary);
+}
+
+/* Accent Lines for Headers */
+.section-title {
+    margin-bottom: 30px;
+}
+
+.section-title h2, .section-title h3 {
+    font-size: 28px;
+    color: var(--text-main);
+}
+
+.section-title p {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-top: 4px;
+}
+
+.accent-line {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-gold), var(--primary-purple));
+    border-radius: 2px;
+    margin-top: 10px;
+}
+
+/* ==========================================================================
+   VIEW 1: MOVIES LANDING & HERO
+   ========================================================================== */
+.hero-spotlight {
+    background: linear-gradient(180deg, rgba(9, 10, 15, 0.4) 0%, rgba(9, 10, 15, 0.95) 100%), 
+                url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&q=80&w=1200') no-repeat center/cover;
+    border-radius: 16px;
+    padding: 80px 48px 48px 48px;
+    border: 1px solid var(--border-glass);
+    margin-bottom: 40px;
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-content .tag {
+    background: rgba(139, 92, 246, 0.2);
+    border: 1px solid var(--primary-purple);
+    color: var(--text-purple);
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+}
+
+.hero-content h1 {
+    font-size: 52px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    background: linear-gradient(to right, #ffffff, #e2e8f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-content p.description {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-bottom: 24px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.hero-meta {
+    display: flex;
+    gap: 24px;
+    color: var(--text-main);
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 32px;
+}
+
+.hero-meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.hero-meta i {
+    color: var(--primary-gold);
+}
+
+/* Movie Filters Layout */
+.filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    background-color: var(--bg-secondary);
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: 1px solid var(--border-glass);
+    margin-bottom: 40px;
+}
+
+.search-box {
+    position: relative;
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+.search-box i {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.search-box input {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+    padding: 12px 16px 12px 48px;
+    border-radius: 8px;
+    color: var(--text-main);
+    font-size: 14px;
+    transition: var(--transition-smooth);
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+}
+
+.filters {
+    display: flex;
+    gap: 16px;
+}
+
+.filters select {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+    color: var(--text-main);
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: var(--transition-smooth);
+}
+
+.filters select:focus {
+    outline: none;
+    border-color: var(--primary-purple);
+}
+
+/* Movie Cards Grid */
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.movie-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-card:hover {
+    transform: translateY(-8px);
+    background-color: var(--bg-card-hover);
+    border-color: var(--primary-purple);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
+}
+
+.card-poster {
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-poster img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.movie-card:hover .card-poster img {
+    transform: scale(1.05);
+}
+
+.poster-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(9, 10, 15, 0.9) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.movie-card:hover .poster-overlay {
+    opacity: 1;
+}
+
+.card-details {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-details h4 {
+    font-size: 18px;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-details .genre {
+    font-size: 13px;
+    color: var(--text-purple);
+    margin-bottom: 12px;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 12px;
+    margin-top: auto;
+}
+
+.card-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ==========================================================================
+   VIEW 2: SHOWTIMES SELECTION
+   ========================================================================== */
+.movie-details-banner {
+    display: flex;
+    gap: 32px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+}
+
+.banner-poster {
+    width: 200px;
+    height: 290px;
+    border-radius: 8px;
+    object-fit: cover;
+    border: 1px solid var(--border-glass);
+}
+
+.banner-info {
+    flex-grow: 1;
+}
+
+.banner-info h2 {
+    font-size: 36px;
+    margin-bottom: 8px;
+}
+
+.banner-tags {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.banner-tag {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 15px;
+}
+
+.banner-tag.gold {
+    color: var(--primary-gold);
+    border-color: rgba(245, 158, 11, 0.3);
+    background-color: rgba(245, 158, 11, 0.05);
+}
+
+.banner-info p.synopsis {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.banner-meta-rows {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+}
+
+.meta-item label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.meta-item span {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* Timeline Layout for Showtimes */
+.showtimes-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.day-session {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.day-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+}
+
+.day-header h4 {
+    font-size: 18px;
+    color: var(--text-purple);
+}
+
+.showtimes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.showtime-ticket {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-glass);
+    border-radius: 8px;
+    padding: 16px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-align: center;
+}
+
+.showtime-ticket:hover {
+    background-color: rgba(139, 92, 246, 0.06);
+    border-color: var(--primary-purple);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.15);
+}
+
+.showtime-ticket .time {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.showtime-ticket .hall {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 4px 0 10px 0;
+}
+
+.showtime-ticket .price {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--primary-gold);
+}
+
+.no-sessions-msg {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 40px;
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-glass);
+}
+
+/* ==========================================================================
+   VIEW 3: INTERACTIVE SEAT SELECTION
+   ========================================================================== */
+.booking-session-info {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    padding: 16px 24px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.session-brief h4 {
+    font-size: 20px;
+}
+
+.session-brief p {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.price-pill {
+    background-color: rgba(245, 158, 11, 0.1);
+    border: 1px solid var(--primary-gold);
+    color: var(--primary-gold);
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+/* Cinema Layout & Screen Curve Glow */
+.theater-hall-layout {
+    background-color: #0c0e16;
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 48px 24px;
+    margin-bottom: 120px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    overflow-x: auto;
+}
+
+.screen-container {
+    width: 100%;
+    margin-bottom: 60px;
+    text-align: center;
+    perspective: 500px;
+}
+
+.screen {
+    width: 80%;
+    max-width: 600px;
+    height: 10px;
+    background: linear-gradient(90deg, transparent, #a78bfa, #60a5fa, #a78bfa, transparent);
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 8px 25px 4px rgba(139, 92, 246, 0.4);
+    transform: rotateX(-5deg);
+}
+
+.screen-glow {
+    width: 65%;
+    max-width: 500px;
+    height: 40px;
+    background: radial-gradient(50% 100% at 50% 0%, rgba(139, 92, 246, 0.15) 0%, transparent 100%);
+    margin: 0 auto;
+}
+
+.screen-label {
+    color: rgba(255,255,255,0.25);
+    font-size: 11px;
+    letter-spacing: 0.8em;
+    font-weight: 700;
+    margin-top: 8px;
+    text-transform: uppercase;
+}
+
+/* Seat Selector Grids */
+.seats-grid-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    min-width: 480px;
+    margin-bottom: 40px;
+}
+
+.seat-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.row-label {
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    width: 24px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.seat-item {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    background-color: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #cbd5e1;
+    user-select: none;
+}
+
+.seat-item:hover:not(.occupied) {
+    transform: scale(1.15);
+    background-color: rgba(139, 92, 246, 0.4);
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 10px var(--primary-purple-glow);
+    color: var(--text-main);
+}
+
+.seat-item.selected {
+    background-color: var(--primary-gold) !important;
+    border-color: var(--primary-gold) !important;
+    color: #0c0d12 !important;
+    box-shadow: 0 0 12px var(--primary-gold-glow);
+    transform: scale(1.1);
+}
+
+.seat-item.occupied {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border-color: transparent !important;
+    color: #475569 !important;
+    cursor: not-allowed;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+.seat-legend {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 24px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.seat-demo {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.seat-demo.available {
+    background-color: #1e293b;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.seat-demo.selected {
+    background-color: var(--primary-gold);
+}
+
+.seat-demo.occupied {
+    background-color: rgba(255,255,255,0.05);
+}
+
+/* Floating checkout bar */
+.checkout-floating-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(18, 20, 32, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border-glass);
+    padding: 16px 24px;
+    z-index: 99;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.checkout-floating-bar .selected-summary, 
+.checkout-floating-bar .total-price-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-floating-bar .label {
+    color: var(--text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+}
+
+.checkout-floating-bar .value {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#checkout-seats-list {
+    color: var(--text-purple);
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#checkout-total-price {
+    color: var(--primary-gold);
+}
+
+/* ==========================================================================
+   VIEW 4: SUCCESS TICKET STUB
+   ========================================================================== */
+.success-ticket-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 24px 0;
+}
+
+.success-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.success-icon {
+    font-size: 64px;
+    color: var(--accent-green);
+    margin-bottom: 16px;
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+.success-header h2 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.success-header p {
+    color: var(--text-muted);
+    font-size: 15px;
+}
+
+/* Authentic Ticket Stub Layout */
+.ticket-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.5);
+    margin-bottom: 40px;
+}
+
+/* Left & Right Notch Cutouts */
+.ticket-card::before, .ticket-card::after {
+    content: '';
+    position: absolute;
+    top: 60%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: var(--bg-primary);
+    z-index: 10;
+}
+
+.ticket-card::before {
+    left: -10px;
+}
+
+.ticket-card::after {
+    right: -10px;
+}
+
+.ticket-main-section {
+    padding: 32px;
+}
+
+.ticket-movie-title {
+    font-size: 28px;
+    margin-bottom: 12px;
+    color: var(--text-main);
+}
+
+.ticket-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.info-node label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+}
+
+.info-node span {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--text-main);
+}
+
+.info-node span.gold {
+    color: var(--primary-gold);
+}
+
+/* Dashed ticket tear line */
+.ticket-divider-line {
+    border-top: 2px dashed rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: calc(60% + 10px);
+    left: 20px;
+    right: 20px;
+    z-index: 5;
+}
+
+.ticket-stub-section {
+    padding: 40px 32px 32px 32px;
+    background-color: rgba(255, 255, 255, 0.02);
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.03);
+}
+
+.barcode-placeholder {
+    width: 100%;
+    height: 60px;
+    background: repeating-linear-gradient(90deg, 
+        #f3f4f6, #f3f4f6 2px, 
+        transparent 2px, transparent 6px,
+        #f3f4f6 6px, #f3f4f6 10px,
+        transparent 10px, transparent 12px,
+        #f3f4f6 12px, #f3f4f6 14px
+    );
+    border-radius: 4px;
+    margin-bottom: 12px;
+    opacity: 0.85;
+}
+
+.ticket-ref-number {
+    font-family: monospace;
+    color: var(--text-purple);
+    font-size: 14px;
+    letter-spacing: 0.2em;
+}
+
+.success-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+/* ==========================================================================
+   VIEW 5: LOGIN / REGISTER FORMS
+   ========================================================================== */
+.auth-box-container {
+    max-width: 440px;
+    margin: 40px auto;
+}
+
+.auth-tabs {
+    display: flex;
+    background-color: var(--bg-secondary);
+    border-radius: 12px 12px 0 0;
+    padding: 6px;
+    border: 1px solid var(--border-glass);
+    border-bottom: none;
+}
+
+.auth-tab-btn {
+    flex-grow: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+    font-size: 15px;
+}
+
+.auth-tab-btn.active {
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.auth-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 0 0 12px 12px;
+    padding: 32px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+.auth-form {
+    display: none;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+.auth-form h3 {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.auth-form .subtitle {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 16px;
+    color: var(--text-purple);
+}
+
+.input-wrapper input, .input-wrapper select, .admin-panel-form input, .admin-panel-form select, .admin-panel-form textarea {
+    width: 100%;
+    background-color: rgba(9, 10, 15, 0.7);
+    border: 1px solid var(--border-glass);
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: var(--text-main);
+    font-size: 14px;
+    transition: var(--transition-smooth);
+}
+
+.input-wrapper input {
+    padding-left: 48px;
+}
+
+.input-wrapper input:focus, .input-wrapper select:focus, .admin-panel-form input:focus, .admin-panel-form select:focus, .admin-panel-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-purple);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.2);
+}
+
+.auth-error-msg, .admin-form-msg {
+    color: var(--accent-red);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.auth-success-msg {
+    color: var(--accent-green);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+/* ==========================================================================
+   VIEW 6: CUSTOMER DASHBOARD (HISTORY)
+   ========================================================================== */
+.tickets-history-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.ticket-item {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.ticket-item:hover {
+    border-color: rgba(255,255,255,0.15);
+    background-color: var(--bg-card-hover);
+}
+
+.ticket-item-details {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.ticket-item-poster {
+    width: 60px;
+    height: 90px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid var(--border-glass);
+}
+
+.ticket-main-info h4 {
+    font-size: 20px;
+    margin-bottom: 4px;
+}
+
+.ticket-main-info p {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.ticket-main-info span.seats {
+    color: var(--text-purple);
+    font-weight: 600;
+}
+
+.ticket-pricing-status {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.price-node {
+    text-align: right;
+}
+
+.price-node label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.price-node span {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-gold);
+}
+
+.status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.status-badge.confirmed {
+    background-color: rgba(16, 185, 129, 0.15);
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+}
+
+.status-badge.cancelled {
+    background-color: rgba(239, 68, 68, 0.15);
+    border: 1px solid var(--accent-red);
+    color: var(--accent-red);
+}
+
+.no-tickets-msg {
+    text-align: center;
+    padding: 60px;
+    color: var(--text-muted);
+    background-color: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-glass);
+}
+
+/* ==========================================================================
+   VIEW 7: ADMIN PORTAL
+   ========================================================================== */
+.admin-portal-header {
+    margin-bottom: 32px;
+}
+
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-box {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.icon-box.purple {
+    background-color: rgba(139, 92, 246, 0.15);
+    border: 1px solid var(--primary-purple);
+    color: var(--text-purple);
+}
+
+.icon-box.gold {
+    background-color: rgba(245, 158, 11, 0.15);
+    border: 1px solid var(--primary-gold);
+    color: var(--primary-gold);
+}
+
+.icon-box.green {
+    background-color: rgba(16, 185, 129, 0.15);
+    border: 1px solid var(--accent-green);
+    color: var(--accent-green);
+}
+
+.stat-info .stat-label {
+    color: var(--text-muted);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.stat-info .stat-value {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 700;
+}
+
+/* Admin Panels Tabs */
+.admin-content-tabs {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border-glass);
+    padding-bottom: 8px;
+}
+
+.admin-tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 16px;
+    padding: 10px 16px;
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.admin-tab-btn:hover {
+    color: var(--text-main);
+}
+
+.admin-tab-btn.active {
+    color: var(--primary-gold);
+}
+
+.admin-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -9px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: var(--primary-gold);
+    border-radius: 2px;
+}
+
+.admin-panel {
+    display: none;
+}
+
+.admin-panel.active {
+    display: block;
+}
+
+.admin-panel-form {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    padding: 32px;
+    max-width: 700px;
+}
+
+.admin-panel-form h3 {
+    font-size: 22px;
+    margin-bottom: 4px;
+}
+
+.admin-panel-form p {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.admin-panel textarea {
+    resize: vertical;
+}
+
+/* Admin Log Table */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+    min-width: 800px;
+}
+
+.admin-table th, .admin-table td {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.admin-table th {
+    background-color: rgba(255,255,255,0.02);
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+}
+
+.admin-table tbody tr:hover {
+    background-color: rgba(255,255,255,0.02);
+}
+
+.admin-table .ref-num {
+    font-family: monospace;
+    font-weight: 600;
+    color: var(--text-purple);
+}
+
+/* ==========================================================================
+   RESPONSIVE OPTIMIZATIONS
+   ========================================================================== */
+@media (max-width: 900px) {
+    .movie-details-banner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .banner-poster {
+        width: 180px;
+        height: 260px;
+    }
+    .banner-tags {
+        justify-content: center;
+    }
+    .ticket-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .ticket-pricing-status {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 16px;
+    }
+    .nav-menu {
+        gap: 16px;
+    }
+    .hero-content h1 {
+        font-size: 38px;
+    }
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-box {
+        max-width: 100%;
+    }
+    .checkout-floating-bar {
+        flex-direction: column;
+        gap: 16px;
+        padding-bottom: 24px;
+        text-align: center;
+    }
+    .checkout-floating-bar .btn {
+        width: 100%;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
